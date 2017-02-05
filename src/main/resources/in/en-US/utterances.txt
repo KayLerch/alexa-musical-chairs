@@ -1,0 +1,10 @@
+PlayIntent play a song
+PlayIntent play a game
+PlayIntent play
+PlayIntent go on
+PlayIntent go ahead
+PlayIntent continue
+PlayIntent start
+PlayIntent start a game
+PlayIntent start the game
+PlayIntent start playing

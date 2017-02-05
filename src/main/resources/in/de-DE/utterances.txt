@@ -1,0 +1,12 @@
+PlayIntent spiele ein Lied
+PlayIntent spiele einen Song
+PlayIntent spiele
+PlayIntent lege los
+PlayIntent los
+PlayIntent mach weiter
+PlayIntent weiter
+PlayIntent starte
+PlayIntent starte ein Spiel
+PlayIntent starte das Spiel
+PlayIntent fang an zu spiele
+PlayIntent fange an zu spiele
