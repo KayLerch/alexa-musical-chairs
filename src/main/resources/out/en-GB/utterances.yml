@@ -9,7 +9,9 @@ GetReady: "[
   Start dancing|
   Move your body|
   Ready, steady, go|
-  On your mark, get set, go]!"
+  On your mark, get ready, go|
+  Move it|
+  Now put your hands on the shoulders in front of you. Here we go]!"
 
 TakeASeat: "[
   Take a seat!|
@@ -38,7 +40,7 @@ SayPlay:
 
 SayPlayWithInterruption:
   - "${GetReady} <break time='500ms'/> {audio} Turn around to change direction! {audio2} <break time='1s'/> ${TakeASeat}"
-  - "${GetReady} <break time='500ms'/> {audio} Just keep moving! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='500ms'/> {audio} Freeze! <break time='1s'/> And go! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='500ms'/> {audio} Now move backwards! {audio2} <break time='1s'/> ${TakeASeat}"
 
 SaySorry:

@@ -47,10 +47,6 @@ public class SkillConfig {
         return properties.getProperty("S3BucketUrl");
     }
 
-    public static String[] getThemes() {
-        return properties.getProperty("Themes").split(",");
-    }
-
     public static String[] getSongs() {
         return properties.getProperty("Songs").split(",");
     }
