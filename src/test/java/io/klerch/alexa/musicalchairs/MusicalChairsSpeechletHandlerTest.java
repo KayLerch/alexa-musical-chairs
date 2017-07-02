@@ -18,7 +18,21 @@ import static org.junit.Assert.*;
 
 public class MusicalChairsSpeechletHandlerTest {
     @Test
-    public void launch() throws Exception {
+    public void launchUS() throws Exception {
+        launch("en-US", ".*Welcome.*");
+    }
+
+    @Test
+    public void launchUK() throws Exception {
+        launch("en-GB", ".*Welcome.*");
+    }
+
+    @Test
+    public void launchDE() throws Exception {
+        launch("de-DE", ".*Willkommen.*");
+    }
+
+    private void launch(final String locale, final String welcome) throws Exception {
         final AlexaEndpoint endpoint = AlexaRequestStreamHandlerEndpoint
                 .create(MusicalChairsSpeechletHandler.class)
                 .build();
@@ -27,6 +41,15 @@ public class MusicalChairsSpeechletHandlerTest {
                 .withApplicationId("amzn1.ask.skill.11d65861-9acf-4646-8a41-2d79b8d9315a")
                 .withLocale(Locale.US)
                 .build();
+
+        client.startSession()
+                .launch()
+                    .assertMatches(AlexaAsset.OutputSpeechSsml, ".*Welcome.*")
+                    .assertSessionStillOpen()
+                    .done()
+                .yes()
+                    .assertTrue(AlexaAssertion.HasOutputSpeechIsSsml)
+                    .assertSessionEnded();
 
         final List<String> answers = new ArrayList<>();
 
@@ -40,5 +63,4 @@ public class MusicalChairsSpeechletHandlerTest {
 
         answers.forEach(System.out::println);
     }
-
 }

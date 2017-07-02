@@ -1,5 +1,6 @@
 package io.klerch.alexa.musicalchairs.handler;
 
+import io.klerch.alexa.musicalchairs.SkillConfig;
 import io.klerch.alexa.musicalchairs.model.Jukebox;
 import io.klerch.alexa.state.handler.AWSDynamoStateHandler;
 import io.klerch.alexa.state.handler.AlexaStateHandler;
@@ -11,6 +12,7 @@ import io.klerch.alexa.tellask.schema.annotation.AlexaIntentListener;
 import io.klerch.alexa.tellask.schema.type.AlexaOutputFormat;
 import io.klerch.alexa.tellask.util.AlexaRequestHandlerException;
 
+import java.util.Optional;
 import java.util.Random;
 
 @AlexaIntentListener(customIntents = "PlayIntent")
@@ -27,15 +29,23 @@ public class PlayHandler implements AlexaIntentHandler {
 
     public static AlexaOutput play(final AlexaInput input) throws AlexaRequestHandlerException, AlexaStateException {
         final AlexaStateHandler handler = new AWSDynamoStateHandler(input.getSessionStateHandler().getSession());
-        final Jukebox jukebox = handler.readModel(Jukebox.class).orElse(handler.createModel(Jukebox.class));
-        // interrupt on 10% of all playbacks
-        final int interrupt = new Random().nextInt(10);
+        final Optional<Jukebox> jukebox = handler.readModel(Jukebox.class);
 
-        return AlexaOutput.tell(interrupt == 1 ? "SayPlayWithInterruption" : "SayPlay")
-                .putSlot("audio", jukebox.getRandomMp3(), AlexaOutputFormat.AUDIO)
-                .putSlot("audio2", jukebox.getFollowUpMp3(), AlexaOutputFormat.AUDIO)
-                .putState(jukebox)
-                .build();
+        if (!jukebox.isPresent()) {
+            // newcomers get a welcome message with some guidance
+            return AlexaOutput.ask("SayWelcome")
+                    .putState(handler.createModel(Jukebox.class))
+                    .withReprompt(true).build();
+        } else {
+            // interrupt on x% of all playbacks
+            final int interrupt = new Random().nextInt(1000 / SkillConfig.getInterruptProbabilityPercent()) / 10;
+
+            return AlexaOutput.tell(interrupt == 0 ? "SayPlayWithInterruption" : "SayPlay")
+                    .putSlot("audio", jukebox.get().getRandomMp3(), AlexaOutputFormat.AUDIO)
+                    .putSlot("audio2", jukebox.get().getFollowUpMp3(), AlexaOutputFormat.AUDIO)
+                    .putState(jukebox.get())
+                    .build();
+        }
     }
 
     @Override

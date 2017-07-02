@@ -1,4 +1,5 @@
 GetReady: "[
+  Achtung fertig, los|
   Es geht los|
   Macht euch bereit|
   Auf geht es|
@@ -11,22 +12,32 @@ GetReady: "[
   Ab in die Spur mit euch|
   Auf die Plätze, fertig, los|
   Auf in den Gänsemarsch|
+  Nun wird das Tanzbein geschwungen|
   Dann legt mal los|
-  Bewegung, bitte|
+  Bewegung bitte|
+  Es spielt im Takt der nun folgende Akt|
+  Wer rastet, der rostet. Darum geht es los|
+  Der Plumpsack geht um, nur ihr wisst warum|
   Dann bewegt mal eure müden Knochen|
+  Jetzt dürft ihr euren Rhythmus beweisen|
   Dann zeigt mal was ihr könnt|
   Auf geht's ab geht's|
   Rucki zucki in die nächste Runde|
   Die Karawane zieht weiter|
   Links zwo drei vier, Marsch|
   Jetzt geht es los, mit ganz großen Schritten|
+  Der Stuhltanz beginnt|
+  Ab geht er der Peter|
+  Ab geht die Post|
+  Und heiter geht es weiter|
   Jetzt mal anders. In dieser Runde bewegt ihr euch rückwärts. Na dann|
-  Wir machen es jetzt etwas interessanter. Legt Eure Hände auf die Schultern des Vordermannes. Und los]!"
+  Wir machen es jetzt etwas interessanter. Legt Eure Hände auf die Schultern des Vordermannes.<break time='3s'/>Fertig? <break time='1s'/> Dann los]!"
 
 TakeASeat: "[
+  Eins zwei drei, vorbei||
   Jetzt aber schnell!|
   Nun aber schnell!|
-  Schnell, schnell!|
+  Schnell schnell!|
   Nehmt Platz!|
   Bitte Platz nehmen!|
   Sucht einen Platz!|
@@ -35,6 +46,7 @@ TakeASeat: "[
   Wo ist noch ein Stuhl frei?|
   Alle auf die Plätze!|
   Na, wer ist schneller?|
+  Eene meene muh und raus bist du!|
   Nun aber hurtig!]"
 
 GoodBye: "[
@@ -47,14 +59,25 @@ GoodBye: "[
   Ich bin weg|
   Bis bald]!"
 
+SayWelcome:
+  Utterances:
+    - "Willkommen auf der Reise nach Jerusalem. Ich werde der Spielleiter dieses beliebten Gesellschaftsspiels.
+       Nachdem ein Kreis von Stühlen aufgestellt ist und sich die Spielgruppe darum versammelt hat, braucht es
+       nur die magischen Worte ,Alexa starte Reise nach Jerusalem, und es beginnt Musik zu spielen die irgendwann
+       zufällig stoppt. Wer jetzt keinen freien Stuhl findet, verlässt die Spielgruppe. Ein Stuhl wird entfernt
+       und es geht weiter bis nur noch der Gewinner einen Stuhlplatz findet. Möchtest du jetzt die erste Runde beginnen?"
+  Reprompts:
+    - "Sage Ja um eine neue Runde zu beginnen oder Stop um diesen Skill zu beenden."
+
 SayPlay:
   - "${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
 
 SayPlayWithInterruption:
-  - "${GetReady} <break time='500ms'/> {audio} Nun dreht euch und geht in die umgekehrte Richtung! {audio2} <break time='1s'/> ${TakeASeat}"
-  - "${GetReady} <break time='500ms'/> {audio} Jetzt legt jeder die Hände auf die Schultern des Vordermannes! {audio2} <break time='1s'/> ${TakeASeat}"
-  - "${GetReady} <break time='500ms'/> {audio} Weiter gehts! {audio2} <break time='1s'/> ${TakeASeat}"
-  - "${GetReady} <break time='500ms'/> {audio} Nun bewegt euch rückwärts! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='200ms'/> {audio} Nun dreht euch und geht in die umgekehrte Richtung! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='200ms'/> {audio} Jetzt legt jeder die Hände auf die Schultern des Vordermannes! <break time='3s'/> Fertig? <break time='1s'/> Na dann weiter {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='200ms'/> {audio} Weiter gehts! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='200ms'/> {audio} Jetzt klatscht mal zur Musik während ihr euch weiter bewegt! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='200ms'/> {audio} Nun bewegt euch rückwärts! {audio2} <break time='1s'/> ${TakeASeat}"
 
 SaySorry:
   - "[Entschuldige|Es tut mir leid], es gibt einen Sprung in der Platte. Versuche es nochmal."

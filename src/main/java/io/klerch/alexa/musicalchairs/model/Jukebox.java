@@ -20,12 +20,19 @@ public class Jukebox extends AlexaStateModel {
     public Jukebox() {
     }
 
+    public List<String> getLastPlayed() {
+        return lastPlayed;
+    }
+
     public String getFollowUpMp3() {
         int playTime;
 
         do {
+            // find random playtime for follow-up mp3
             playTime = (new Random().nextInt(5) + 3) * 5;
-        } while (lastPlayTime + playTime > 90);
+        }
+        // until overall playtime does not exceed 90 seconds (maximum)
+        while (lastPlayTime + playTime > 90);
 
         return SkillConfig.getS3BucketUrl() + lastPlayed.get(lastPlayed.size() - 1) + "-" + playTime + ".mp3";
     }

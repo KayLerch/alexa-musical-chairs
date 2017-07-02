@@ -2,10 +2,7 @@ package io.klerch.alexa.musicalchairs;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Encapsulates access to application-wide property values
@@ -22,32 +19,45 @@ public class SkillConfig {
     static {
         final String propertiesFile =
                 SkillConfig.class.getClassLoader().getResource(customPropertiesFile) != null ?
-                        customPropertiesFile : defaultPropertiesFile;
-        final InputStream propertiesStream = SkillConfig.class.getClassLoader().getResourceAsStream(propertiesFile);
-        try {
-            properties.load(propertiesStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (propertiesStream != null) {
-                try {
-                    propertiesStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        customPropertiesFile :
+                        SkillConfig.class.getClassLoader().getResource(defaultPropertiesFile) != null ?
+                        defaultPropertiesFile : null;
+
+        if (propertiesFile != null) {
+            final InputStream propertiesStream = SkillConfig.class.getClassLoader().getResourceAsStream(propertiesFile);
+            try {
+                properties.load(propertiesStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (propertiesStream != null) {
+                    try {
+                        propertiesStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
 
-    public static String getAlexaAppId() {
-        return properties.getProperty("AlexaAppId");
+    private static String getProperty(final String key) {
+        return Optional.ofNullable(properties).map(p -> p.getProperty(key)).orElse(System.getenv(key));
+    }
+
+    static String getAlexaAppId() {
+        return getProperty("AlexaAppId");
     }
 
     public static String getS3BucketUrl() {
-        return properties.getProperty("S3BucketUrl");
+        return getProperty("S3BucketUrl");
     }
 
     public static String[] getSongs() {
-        return properties.getProperty("Songs").split(",");
+        return getProperty("Songs").split(",");
+    }
+
+    public static Integer getInterruptProbabilityPercent() {
+        return Integer.valueOf(getProperty("InterruptProbabilityPercent"));
     }
 }

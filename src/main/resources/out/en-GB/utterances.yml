@@ -11,7 +11,7 @@ GetReady: "[
   Ready, steady, go|
   On your mark, get ready, go|
   Move it|
-  Now put your hands on the shoulders in front of you. Here we go]!"
+  Now put your hands on the shoulders in front of you. <break time='3s'/>Ready?<break time='1s'/> Here we go]!"
 
 TakeASeat: "[
   Take a seat!|
@@ -35,12 +35,22 @@ GoodBye: "[
   Peace out|
   Peace]!"
 
+SayWelcome:
+  Utterances:
+    - "Welcome to Musical Chairs. I will be your game-master for this popular party game.
+       It just needs a round of chairs and a group of party people to start your game with
+       Alexa, start Musical Chairs. I will play back music which then stops randomly. Would
+       you like to start now?"
+  Reprompts:
+    - "Say start to begin a new game or say stop to cancel it."
+
 SayPlay:
   - "${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
 
 SayPlayWithInterruption:
-  - "${GetReady} <break time='500ms'/> {audio} Turn around to change direction! {audio2} <break time='1s'/> ${TakeASeat}"
-  - "${GetReady} <break time='500ms'/> {audio} Freeze! <break time='1s'/> And go! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='500ms'/> {audio} Now clap your hands while you move on! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='500ms'/> {audio} Now Turn around to change direction! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${GetReady} <break time='500ms'/> {audio} Now Freeze! <break time='1s'/> And move on! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='500ms'/> {audio} Now move backwards! {audio2} <break time='1s'/> ${TakeASeat}"
 
 SaySorry:
