@@ -5,16 +5,12 @@ import io.klerch.alexa.test.asset.AlexaAssertion;
 import io.klerch.alexa.test.asset.AlexaAsset;
 import io.klerch.alexa.test.client.AlexaClient;
 import io.klerch.alexa.test.client.endpoint.AlexaEndpoint;
-import io.klerch.alexa.test.client.endpoint.AlexaLambdaEndpoint;
 import io.klerch.alexa.test.client.endpoint.AlexaRequestStreamHandlerEndpoint;
 import io.klerch.alexa.test.response.AlexaResponse;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import static org.junit.Assert.*;
 
 public class MusicalChairsSpeechletHandlerTest {
     @Test
@@ -38,13 +34,13 @@ public class MusicalChairsSpeechletHandlerTest {
                 .build();
 
         final AlexaClient client = AlexaClient.create(endpoint)
-                .withApplicationId("amzn1.ask.skill.11d65861-9acf-4646-8a41-2d79b8d9315a")
-                .withLocale(Locale.US)
+                .withApplicationId(SkillConfig.getAlexaAppId())
+                .withLocale(locale)
                 .build();
 
         client.startSession()
                 .launch()
-                    .assertMatches(AlexaAsset.OutputSpeechSsml, ".*Welcome.*")
+                    .assertMatches(AlexaAsset.OutputSpeechSsml, welcome)
                     .assertSessionStillOpen()
                     .done()
                 .yes()

@@ -60,4 +60,8 @@ public class SkillConfig {
     public static Integer getInterruptProbabilityPercent() {
         return Integer.valueOf(getProperty("InterruptProbabilityPercent"));
     }
+
+    public static Integer getReviewSolicitationAfter() {
+        return Integer.valueOf(getProperty("ReviewSolictationAfter"));
+    }
 }

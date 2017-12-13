@@ -59,6 +59,8 @@ GoodBye: "[
   Ich bin weg|
   Bis bald]!"
 
+ReviewSolicitation: "Bitte gebe doch der Reise nach Jerusalem eine positive Bewertung im Alexa Skill Store. Ich habe dir soeben eine Anleitung an deine Alexa App geschickt."
+
 SayWelcome:
   Utterances:
     - "Willkommen auf der Reise nach Jerusalem. Ich werde der Spielleiter dieses beliebten Gesellschaftsspiels.
@@ -72,12 +74,22 @@ SayWelcome:
 SayPlay:
   - "${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
 
+SayPlayAndSolicit:
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
+
 SayPlayWithInterruption:
   - "${GetReady} <break time='200ms'/> {audio} Nun dreht euch und geht in die umgekehrte Richtung! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='200ms'/> {audio} Jetzt legt jeder die Hände auf die Schultern des Vordermannes! <break time='3s'/> Fertig? <break time='1s'/> Na dann weiter {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='200ms'/> {audio} Weiter gehts! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='200ms'/> {audio} Jetzt klatscht mal zur Musik während ihr euch weiter bewegt! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='200ms'/> {audio} Nun bewegt euch rückwärts! {audio2} <break time='1s'/> ${TakeASeat}"
+
+SayPlayAndSolicitWithInterruption:
+  - "${ReviewSolicitation} ${GetReady} <break time='200ms'/> {audio} Nun dreht euch und geht in die umgekehrte Richtung! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='200ms'/> {audio} Jetzt legt jeder die Hände auf die Schultern des Vordermannes! <break time='3s'/> Fertig? <break time='1s'/> Na dann weiter {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='200ms'/> {audio} Weiter gehts! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='200ms'/> {audio} Jetzt klatscht mal zur Musik während ihr euch weiter bewegt! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='200ms'/> {audio} Nun bewegt euch rückwärts! {audio2} <break time='1s'/> ${TakeASeat}"
 
 SaySorry:
   - "[Entschuldige|Es tut mir leid], es gibt einen Sprung in der Platte. Versuche es nochmal."

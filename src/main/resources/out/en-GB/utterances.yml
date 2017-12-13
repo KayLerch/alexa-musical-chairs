@@ -35,6 +35,8 @@ GoodBye: "[
   Peace out|
   Peace]!"
 
+ReviewSolicitation: "Please consider giving a positive rating for Musical Chairs on the Alexa Skill Store. I have sent a card to your Alexa app with instructions."
+
 SayWelcome:
   Utterances:
     - "Welcome to Musical Chairs. I will be your game-master for this popular party game.
@@ -47,11 +49,20 @@ SayWelcome:
 SayPlay:
   - "${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
 
+SayPlayAndSolicit:
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} <break time='1s'/> ${TakeASeat}"
+
 SayPlayWithInterruption:
   - "${GetReady} <break time='500ms'/> {audio} Now clap your hands while you move on! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='500ms'/> {audio} Now Turn around to change direction! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='500ms'/> {audio} Now Freeze! <break time='1s'/> And move on! {audio2} <break time='1s'/> ${TakeASeat}"
   - "${GetReady} <break time='500ms'/> {audio} Now move backwards! {audio2} <break time='1s'/> ${TakeASeat}"
+
+SayPlayAndSolicitWithInterruption:
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} Now clap your hands while you move on! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} Now Turn around to change direction! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} Now Freeze! <break time='1s'/> And move on! {audio2} <break time='1s'/> ${TakeASeat}"
+  - "${ReviewSolicitation} ${GetReady} <break time='500ms'/> {audio} Now move backwards! {audio2} <break time='1s'/> ${TakeASeat}"
 
 SaySorry:
   - "[Excuse me|Sorry|I am sorry], I was not able to start the music. Please try again."
